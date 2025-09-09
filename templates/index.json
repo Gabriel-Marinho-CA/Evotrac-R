@@ -1,0 +1,10 @@
+{
+    "sections": {
+        "main-banner-hero": {
+            "type": "main-banner-hero"
+        }
+    },
+    "order": [
+        "main-banner-hero"
+    ]
+}
