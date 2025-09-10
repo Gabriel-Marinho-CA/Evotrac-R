@@ -1,0 +1,68 @@
+header {
+    .wrapper-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+
+        .logo {
+            flex-basis: 28%;
+        }
+
+        .header__heading-logo-wrapper {
+            img {
+                height: auto;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 400px;
+            height: 47px;
+
+            >div {
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+
+            .revendedor {
+                a {
+                    border-radius: 12px;
+                    font-size: clamp(12px, 1.6vw, 16px);
+                    height: 100%;
+                }
+            }
+
+            .login {
+                display: flex;
+                align-items: center;
+                gap: .3rem;
+            }
+
+            #cart-icon-bubble {
+                position: relative;
+
+                .cart-count-bubble {
+                    position: absolute;
+                    right: -8px;
+                    top: -6px;
+                    background-color: #52AE32;
+                    color: #fff;
+                    font-size: 13px;
+                    border-radius: 50%;
+                    width: 22px;
+                    height: 22px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+        }
+    }
+}
