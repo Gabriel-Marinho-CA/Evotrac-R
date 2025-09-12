@@ -44,7 +44,7 @@
 
     {% style %}
       :root {
-        --page-width:{{ settings.page_width }};
+        --page-width:{{ settings.page_width }}px;
         --padding-horizontal: {{ settings.padding_horizontal }}rem;
       }
       {% for scheme in settings.color_schemes -%}
@@ -97,6 +97,7 @@
     {{ 'header.css' | asset_url | stylesheet_tag }}
     {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
     {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {{ 'card-component.css' | asset_url | stylesheet_tag }}
 
     <link
       rel="stylesheet"
@@ -125,11 +126,12 @@
       {% section 'main-footer' %}
     {% endcomment %}
     {%- render 'cart-drawer' -%}
+    <div class="overlay"></div>
 
     <script>
       window.shopUrl = '{{ request.origin }}';
       window.routes = {
-        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_add_url: '{{ routes.cart_add_url }}.js',
         cart_change_url: '{{ routes.cart_change_url }}',
         cart_update_url: '{{ routes.cart_update_url }}',
         cart_url: '{{ routes.cart_url }}',
@@ -143,6 +145,7 @@
     <script src="{{ 'constants.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'minicart.js' | asset_url }}" defer></script>
+    <script src="{{ 'quick-add.js' | asset_url }}" defer></script>
     <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

@@ -124,5 +124,16 @@
         "label": "Padding horizontal containers"
       }
     ]
+  },
+  {
+    "name": "Valor desconto pix",
+    "settings": [
+      {
+        "type": "number",
+        "default": 5,
+        "label": "Número da porcentagem desconto no pix",
+        "id": "pix_discount_value"
+      }
+    ]
   }
 ]

@@ -1,0 +1,15 @@
+.brand-caroussel-section {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+       transform: translateY(12%);
+    }
+
+    swiper-instance {
+        img {
+            display: block;
+            height: auto;
+            width: 100%;
+        }
+    }
+}

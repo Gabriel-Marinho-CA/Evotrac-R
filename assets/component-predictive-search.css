@@ -3,15 +3,11 @@
   position: absolute;
   top: calc(100% + 0.1rem);
   left: -0.1rem;
-  border-width: var(--popup-border-width);
-  border-style: solid;
-  border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
   background-color: rgb(var(--color-background));
   z-index: 3;
-  border-bottom-right-radius: var(--popup-corner-radius);
-  border-bottom-left-radius: var(--popup-corner-radius);
-  box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius) rgba(var(--color-shadow), var(--popup-shadow-opacity));
+  border-radius: 4px;
   overflow-y: auto;
+  box-shadow: 0px 3px 6px #cecece;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -103,5 +99,40 @@ predictive-search[loading] .predictive-search {
     right: 3rem;
     transform: translateY(-50%);
     cursor: pointer;
+  }
+}
+
+.predictive-search__results-groups-wrapper {
+
+  h2 {
+    padding-bottom: 1rem;
+  }
+
+  .predictive-search__result-group {
+    padding: 2rem;
+
+    ul {
+      overflow-y: auto;
+      max-height: 50dvh;
+
+      li {
+        padding-bottom: 1rem;
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+
+          .price__container {
+            padding-top: .44rem;
+            font-size: clamp(13px, 1.4vw, 16px);
+
+            .price__regular {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
   }
 }

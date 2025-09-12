@@ -1,0 +1,25 @@
+.deals-with-icons {
+    .page-width {
+        border-radius: 8px;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 1rem 0;
+
+        .card {
+            text-align: center;
+
+            .content {
+                font-size: 14px;
+                line-height: 1.5;
+
+                strong {
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

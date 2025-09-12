@@ -217,9 +217,9 @@
       </div>
     {%- endif -%}
 
-    {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+    {% comment %} {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%} {% endcomment %}
 
-    <div id="predictive-search-option-search-keywords" class="predictive-search__search-for-button">
+    <div id="predictive-search-option-search-keywords"  class="hidden predictive-search__search-for-button">
       <button
         class="predictive-search__item predictive-search__item--term link link--text h5 animate-arrow"
         tabindex="-1"

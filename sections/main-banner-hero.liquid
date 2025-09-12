@@ -20,12 +20,14 @@
                   title="Banner"
                   {% endif %}>
                   {% if forloop.first %}
+                    {% assign alt_banner = slide.settings.image_slide.alt | default: slide.settings.alt %}
+                    
                     {% if slide.settings.image_slide_mob != blank %}
-                      {{ slide.settings.image_slide_mob | image_url: width: 412 | image_tag: loading: 'eager',  class: 'mobile', preload: true, alt: slide.settings.image_slide.alt | default: slide.settings.alt, fetchpriority: 'high' }}
+                      {{ slide.settings.image_slide_mob | image_url: width: 412 | image_tag: loading: 'eager',  class: 'mobile', preload: true, alt: alt_banner, fetchpriority: 'high' }}
                     {% endif %}
 
                     {% if slide.settings.image_slide != blank %}
-                      {{ slide.settings.image_slide | image_url: width: 1920 | image_tag: loading: 'eager', class: 'desktop', preload: true, alt: slide.settings.image_slide.alt | default: slide.settings.alt, fetchpriority: 'high' }}
+                      {{ slide.settings.image_slide | image_url: width: 1920 | image_tag: loading: 'eager', class: 'desktop', preload: true, alt: alt_banner, fetchpriority: 'high' }}
                     {% endif %}
 
 
