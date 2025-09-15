@@ -85,29 +85,3 @@ class SwiperInstance extends HTMLElement {
 }
 
 customElements.define("swiper-instance", SwiperInstance);
-
-class ActiveOverlay {
-  constructor() {
-    this.overlay = document.querySelector(".overlay");
-    this.open = false;
-    this.overlay.addEventListener('click',this.activeOverlay.bind(this))
-  }
-  activeOverlay() {
-    if (this.open) {
-      this.overlay.classList.remove("active");
-      this.open = false;
-      
-      if(cartDrawerControls.minicart.classList.contains('active')) {
-        cartDrawerControls.closeMinicart();
-      }
-    } else {
-      this.overlay.classList.add("active");
-      this.open = true;
-    }
-  }
-}
-
-let overlayController;
-window.addEventListener("load", () => {
-  overlayController = new ActiveOverlay();
-});

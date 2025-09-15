@@ -4,11 +4,14 @@
    
 
     <div class="header-minicart">
-        <p>Carrinho</p>
+        <p>Carrinho <span class="hidden buble-quantity">{{ cart.item_count }}</span> </p>
 
-        <div class="svg-wrapper small">
-            {{- 'icon-close.svg' | inline_asset_content -}}
-        </div>
+
+       <close-minicart>
+           <div class="svg-wrapper small">
+               {{- 'icon-close.svg' | inline_asset_content -}}
+           </div>
+       </close-minicart> 
     </div>
     {% if cart != empty %}
         <cart-items>

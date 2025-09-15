@@ -41,6 +41,7 @@ a {
 * {
     box-sizing: border-box;
     font-family: 'effra';
+    letter-spacing: 0;
 }
 
 a {
@@ -75,18 +76,35 @@ ul {
     transition: all .32s ease;
     color: var(--color-button-text);
     border: 1px solid var(--color-button);
+
+    &:disabled {
+        background: #cecece ;
+        color: #000;
+        border: none;
+        cursor: not-allowed;
+
+        .svg-wrapper {
+            display: none;
+        }
+    }
 }
 
-.button-primary {
+.button-primary:not(:disabled) {
     background: var(--color-button);
 
     &:hover {
         background: transparent;
         color: var(--color-button);
+
+        svg {
+            path {
+                stroke: var(--color-button);
+            }
+        }
     }
 }
 
-.button-secondary {
+.button-secondary:not(:disabled) {
 
     &:hover {
         background: var(--color-button);
@@ -159,6 +177,10 @@ ul {
     position: relative;
 }
 
+
+.swiper-slide {
+    height: auto !important;
+}
 
 .swiper-button-next,
 .swiper-button-prev {

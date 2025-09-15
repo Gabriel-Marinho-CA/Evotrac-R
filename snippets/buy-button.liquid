@@ -1,3 +1,7 @@
 <div class="buy-button">
-    <add-to-cart class="add-to-cart button-primary" data-product-id="{{ product.selected_or_first_available_variant.id }}">Adicionar ao carrinho</button>
+    {% if product.first_available_variant.inventory_quantity > 0 %}
+        <button is="add-to-cart" class="add-to-cart button-primary button" data-product-id="{{ product.selected_or_first_available_variant.id }}"> <span class="svg-wrapper">{{'cart-ico-w.svg' | inline_asset_content }}</span> Adicionar ao carrinho</button> 
+        {% else %}
+        <button disabled class="add-to-cart button-primary button" data-product-id="{{ product.selected_or_first_available_variant.id }}"> ESGOTADO</button>   
+    {% endif %}
 </div> 

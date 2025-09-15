@@ -1,4 +1,4 @@
-class AddToCart extends HTMLElement {
+class AddToCart extends HTMLButtonElement {
   constructor() {
     super();
     this.product_id = parseInt(this.getAttribute("data-product-id"));
@@ -38,4 +38,6 @@ class AddToCart extends HTMLElement {
       });
   }
 }
-customElements.define("add-to-cart", AddToCart);
+customElements.define("add-to-cart", AddToCart, {
+  extends:'button'
+});

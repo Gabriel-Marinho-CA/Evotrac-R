@@ -16,7 +16,7 @@
 {% assign collection = collections[section.settings.featured_collection] %}
 
 
-<div class="section-{{ section.id }}-padding featured-collection  arrows-outside">
+<div class="section-{{ section.id }}-padding featured-collection arrows-outside  color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="title">
       <h2>
@@ -37,7 +37,8 @@
         {% for product in collection.products %}
           <div class="swiper-slide">
             {% render 'card-component'
-              , product: product , section_id: section.id %}
+              , product: product
+              , section_id: section.id %}
           </div>
         {% endfor %}
 
@@ -61,6 +62,12 @@
         "label": "Coleção"
       },
       {
+        "type": "color_scheme",
+        "id": "section_color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
         "type": "text",
         "id": "title",
         "label": "Titulo",
@@ -69,8 +76,7 @@
       {
         "type": "header",
         "content": "t:sections.all.padding.section_padding_heading"
-      },
-      {
+      }, {
         "type": "range",
         "id": "padding_top",
         "min": 0,

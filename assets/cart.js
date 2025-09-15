@@ -21,7 +21,8 @@ class CartItems extends HTMLElement {
       .then((response) => response.text())
       .then((responseText) => {
         const html = new DOMParser().parseFromString(responseText, "text/html");
-        const selectors = ["cart-items", ".cart-drawer__footer"];
+        const selectors = ["cart-items", ".cart-drawer__footer",".buble-quantity"];
+        const newQuantityBuble = html.querySelector('.buble-quantity').innerText;
         for (const selector of selectors) {
           const targetElement = document.querySelector(selector);
           const sourceElement = html.querySelector(selector);
@@ -29,11 +30,21 @@ class CartItems extends HTMLElement {
             targetElement.replaceWith(sourceElement);
           }
         }
-        // cartDrawerControls.openMinicart();
+
+        setTimeout(() => {
+          cartDrawerControls.openMinicart();
+          document.querySelector(".overlay").classList.add('active');
+          this.updateQuantyBuble(newQuantityBuble);
+
+        },ON_CHANGE_DEBOUNCE_TIMER ) 
       })
       .catch((e) => {
         console.error(e);
       });
+  }
+
+  updateQuantyBuble(newQty) {
+    document.querySelector('.cart-count-span').innerText = newQty;
   }
 }
 
