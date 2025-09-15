@@ -7,8 +7,8 @@ class AddToCart extends HTMLElement {
 
   onSubmitHandler() {
     const config = fetchConfig("javascript");
-    config.headers["X-Requested-With"] = "XMLHttpRequest";
-    delete config.headers["Content-Type"];
+    // config.headers["X-Requested-With"] = "XMLHttpRequest";
+    // delete config.headers["Content-Type"];
 
     const productObj = {
       items: [
@@ -34,8 +34,7 @@ class AddToCart extends HTMLElement {
         console.error(e);
       })
       .finally(() => {
-        if (this.cart && this.cart.classList.contains("is-empty"))
-          this.cart.classList.remove("is-empty");
+
       });
   }
 }

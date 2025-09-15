@@ -17,12 +17,19 @@ class CartItems extends HTMLElement {
   }
 
   onCartUpdate() {
-    return fetch(`${routes.cart_url}?section_id=main-cart-items`)
+    return fetch(`${routes.cart_url}?section_id=cart-drawer`)
       .then((response) => response.text())
       .then((responseText) => {
         const html = new DOMParser().parseFromString(responseText, "text/html");
-        const sourceQty = html.querySelector("cart-items");
-        this.innerHTML = sourceQty.innerHTML;
+        const selectors = ["cart-items", ".cart-drawer__footer"];
+        for (const selector of selectors) {
+          const targetElement = document.querySelector(selector);
+          const sourceElement = html.querySelector(selector);
+          if (targetElement && sourceElement) {
+            targetElement.replaceWith(sourceElement);
+          }
+        }
+        // cartDrawerControls.openMinicart();
       })
       .catch((e) => {
         console.error(e);

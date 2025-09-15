@@ -1,4 +1,7 @@
 <cart-drawer class="drawer">
+     <div id="CartDrawer" class="cart-drawer">
+
+   
 
     <div class="header-minicart">
         <p>Carrinho</p>
@@ -7,8 +10,7 @@
             {{- 'icon-close.svg' | inline_asset_content -}}
         </div>
     </div>
-  
-    {% if cart.empty? %}
+    {% if cart != empty %}
         <cart-items>
             <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
                 {%- for item in cart.items -%}
@@ -19,10 +21,11 @@
 
     
         {% else %}
-        <div class="empty-cart">
+         <div class="empty-cart">
             <h4>Seu carrinho está vazio</h4>
             <a href="/collection/all" title="continuar comprando" class="button button-primary">Continuar comprando</a>
-        </div>
+        </div> 
     {% endif %}
+      </div>
 
 </cart-drawer>

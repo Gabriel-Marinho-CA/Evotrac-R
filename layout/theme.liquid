@@ -110,6 +110,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     >
+
+        <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
@@ -140,11 +143,9 @@
     </script>
 
 
-    <script src="{{ 'pubsub.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script src="{{ 'constants.js' | asset_url }}" defer></script>
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'minicart.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart.js' | asset_url }}" defer></script>
     <script src="{{ 'quick-add.js' | asset_url }}" defer></script>
     <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
   </body>
