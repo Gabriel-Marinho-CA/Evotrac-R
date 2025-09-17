@@ -1,0 +1,21 @@
+{% if block.settings.img != blank %}
+  {{ block.settings.img | image_url: width: block.settings.img.width | image_tag: loading: 'lazy' }}
+{% endif %}
+
+{% schema %}
+{
+  "name": "payment",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Imagem pagamento"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bloco pagamento"
+    }
+  ]
+}
+{% endschema %}

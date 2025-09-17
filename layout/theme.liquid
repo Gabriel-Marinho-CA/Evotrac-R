@@ -131,6 +131,8 @@
     {%- render 'cart-drawer' -%}
     <div class="overlay"></div>
 
+      {% sections 'footer-group' %}
+ 
     <script>
       window.shopUrl = '{{ request.origin }}';
       window.routes = {

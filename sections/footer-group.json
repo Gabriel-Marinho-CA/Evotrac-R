@@ -1,0 +1,13 @@
+{
+    "name": "t:sections.footer.name",
+    "type": "footer",
+    "sections": {
+        "main-footer": {
+            "type": "main-footer",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main-footer",
+    ]
+}

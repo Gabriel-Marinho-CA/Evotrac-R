@@ -1,0 +1,24 @@
+<div class="payments-wrapper">
+  {% content_for 'blocks' %}
+</div>
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer", 
+  "class": "footer-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ], 
+  "presets": [
+    {
+        "name": "Footer"
+    }
+  ]
+}
+{% endschema %}
