@@ -1,23 +1,194 @@
-<div class="payments-wrapper">
-  {% content_for 'blocks' %}
+<div class="footer-wrapper-sec section-{{ section.id }}-padding   color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    {%- comment -%} ====== 1ª LINHA – LOGO E MENUS ====== {%- endcomment -%}
+    <div class="footer-row footer-row--logo-menus">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'logo' %}
+            {% if block.settings.logo_image != blank %}
+              <div class="footer-logo">
+                <img
+                  src="{{ block.settings.logo_image | img_url: block.settings.logo_size | escape }}"
+                  alt="{{ shop.name | escape }}"
+                  style="max-width:{{ block.settings.logo_size }}px;"
+                >
+              </div>
+            {% endif %}
+          {% when 'menu' %}
+            {% if block.settings.menu_links != blank %}
+              <nav class="footer-menu">
+                <ul>
+                  {% for link in linklists[block.settings.menu_links].links %}
+                    <li>
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </nav>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    {%- comment -%} ====== 2ª LINHA – PAGAMENTOS e SELOS ====== {%- endcomment -%}
+    <div class="footer-row footer-row--payments-security">
+      {% assign payment_blocks = section.blocks | where: 'type', 'payment_icons' %}
+      {% assign security_blocks = section.blocks | where: 'type', 'security_badge' %}
+
+      {% if payment_blocks.size > 0 %}
+        <div class="footer-payments">
+          <h4 class="footer-title">Formas de Pagamento</h4>
+          <div class="footer-images-wrapper">
+            {% for block in payment_blocks %}
+              {% if block.settings.payment_image != blank %}
+                <img src="{{ block.settings.payment_image | img_url: '200x' }}" alt="Forma de pagamento">
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if security_blocks.size > 0 %}
+        <div class="footer-security">
+          <h4 class="footer-title">Selos de Segurança</h4>
+          <div class="footer-images-wrapper">
+            {% for block in security_blocks %}
+              {% if block.settings.security_image != blank %}
+                <img src="{{ block.settings.security_image | img_url: '200x' }}" alt="Selo de segurança">
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {%- comment -%} ====== 3ª LINHA – TEXTO EXTRA ====== {%- endcomment -%}
+    {% if section.settings.extra_text != blank %}
+      <div class="footer-row footer-row--extra-text">
+        <div class="footer-extra-text">
+          {{ section.settings.extra_text }}
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} ====== 4ª LINHA – COPYRIGHT ====== {%- endcomment -%}
+    {% if section.settings.copyright != blank %}
+      <div class="footer-row footer-row--copyright">
+        <p class="footer-copyright">
+          {{ section.settings.copyright }}
+        </p>
+      </div>
+    {% endif %}
+  </div>
 </div>
+
 {% schema %}
 {
   "name": "Footer",
-  "tag": "footer", 
+  "tag": "footer",
   "class": "footer-section",
-  "settings": [],
-  "blocks": [
+  "settings": [
     {
-      "type": "@theme"
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
     },
     {
-      "type": "@app"
+      "type": "richtext",
+      "id": "extra_text",
+      "label": "Texto extra do footer"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright",
+      "default": "© – Todos os direitos reservados."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
     }
-  ], 
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_size",
+          "min": 50,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "label": "Tamanho da logo",
+          "default": 150
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu_links",
+          "label": "Menu de links"
+        }
+      ]
+    },
+    {
+      "type": "payment_icons",
+      "name": "Formas de pagamento",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "payment_image",
+          "label": "Imagem de forma de pagamento"
+        }
+      ]
+    },
+    {
+      "type": "security_badge",
+      "name": "Selos de segurança",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "security_image",
+          "label": "Imagem do selo de segurança"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-        "name": "Footer"
+      "name": "Footer"
     }
   ]
 }
