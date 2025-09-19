@@ -1,34 +1,69 @@
 <cart-drawer class="drawer">
-     <div id="CartDrawer" class="cart-drawer">
-
-   
-
+  <div id="CartDrawer" class="cart-drawer">
     <div class="header-minicart">
-        <p>Carrinho <span class="hidden buble-quantity">{{ cart.item_count }}</span> </p>
+      <p>
+        Carrinho <span class="hidden buble-quantity">{{ cart.item_count }}</span>
+      </p>
 
-
-       <close-minicart>
-           <div class="svg-wrapper small">
-               {{- 'icon-close.svg' | inline_asset_content -}}
-           </div>
-       </close-minicart> 
+      <close-minicart>
+        <div class="svg-wrapper small">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </div>
+      </close-minicart>
     </div>
     {% if cart != empty %}
-        <cart-items>
-            <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
-                {%- for item in cart.items -%}
-                    {{ item.title }}
-                {% endfor %}
+      <cart-items>
+        <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
+          {%- for item in cart.items -%}
+            <div class="product-image">
+              {{ item.product.featured_image | image_url: width: 70 | image_tag: alt: item.title }}
             </div>
-        </cart-items>
+            <div class="content">
+              <p>
+                {{ item.title }}
+              </p>
+              <quantity-popover class="action">
+                <button class="minus" name="minus">-</button>
+                <input
+                  class="quantity__input"
+                  type="number"
+                  data-quantity-variant-id="{{ item.key }}"
+                  name="updates[]"
+                  value="{{ item.quantity }}"
+                  {% # theme-check-disable %}
+                  data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                  min="0"
+                  data-min="{{ item.variant.quantity_rule.min }}"
+                  {% if item.variant.quantity_rule.max != null %}
+                    max="{{ item.variant.quantity_rule.max }}"
+                  {% endif %}
+                  step="{{ item.variant.quantity_rule.increment }}"
+                  {% # theme-check-enable %}
+                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                  id="Drawer-quantity-{{ item.index | plus: 1 }}"
+                  data-index="{{ item.index | plus: 1 }}"
+                  {% if item.instructions and item.instructions.can_update_quantity == false %}
+                    disabled
+                  {% endif %}
+                >
+                <button class="plus" name="plus">+</button>
+              </quantity-popover>
+              <div class="remove-button">
+                <cart-remove-item data-remove-item-id="{{ item.key }}"> REMO </cart-remove-item>
+              </div>
+            </div>
+            <div>
+              <button>Exclude</button>
+            </div>
+          {% endfor %}
+        </div>
+      </cart-items>
 
-    
-        {% else %}
-         <div class="empty-cart">
-            <h4>Seu carrinho está vazio</h4>
-            <a href="/collection/all" title="continuar comprando" class="button button-primary">Continuar comprando</a>
-        </div> 
-    {% endif %}
+    {% else %}
+      <div class="empty-cart">
+        <h4>Seu carrinho está vazio</h4>
+        <a href="/collection/all" title="continuar comprando" class="button button-primary">Continuar comprando</a>
       </div>
-
+    {% endif %}
+  </div>
 </cart-drawer>

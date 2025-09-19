@@ -32,9 +32,6 @@ class AddToCart extends HTMLButtonElement {
       })
       .catch((e) => {
         console.error(e);
-      })
-      .finally(() => {
-
       });
   }
 }
