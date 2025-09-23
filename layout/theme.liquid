@@ -129,7 +129,7 @@
       {% section 'main-footer' %}
     {% endcomment %}
     {%- render 'cart-drawer' -%}
-    <div class="overlay"></div>
+    <close-drawer class="overlay"></close-drawer>
 
       {% sections 'footer-group' %}
  
@@ -144,12 +144,13 @@
       };
     </script>
 
-
-    <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+ 
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
-    <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart-elements.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'quick-add.js' | asset_url }}" defer></script>
     <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'swiper-instance.js' | asset_url }}" defer></script>
+
   </body>
 </html>

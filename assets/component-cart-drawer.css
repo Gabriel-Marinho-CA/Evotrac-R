@@ -22,6 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;    
+    padding-bottom: 2rem;
   }
 
   .empty-cart {
@@ -40,5 +41,11 @@
       padding: 1rem 2rem;
       border-radius: 4px;
     }
+  }
+
+  .cart__items {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }

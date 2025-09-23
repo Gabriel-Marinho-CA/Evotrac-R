@@ -56,6 +56,12 @@ predictive-search[loading] .predictive-search {
 .search-area {
   flex: 1;
 
+  @media (max-width:1000px) {
+    width: 100%;
+    min-width: 100%;
+    order: 1;
+  }
+
   .search-modal__content {
     position: relative;
 
@@ -88,6 +94,10 @@ predictive-search[loading] .predictive-search {
         padding: 0 5rem 0 2rem;
         color: #B0AAA4;
         font-size: clamp(13px, 1.4vw, 16px);
+
+        @media (max-width:1000px) {
+          height: 41px;
+        }
       }
 
     }

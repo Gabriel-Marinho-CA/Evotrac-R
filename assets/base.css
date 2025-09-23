@@ -119,6 +119,10 @@ ul {
     max-width: var(--page-width);
     margin-inline: auto;
     padding-inline: var(--padding-horizontal);
+
+    @media (max-width:1000px) {
+         padding-inline: calc(var(--padding-horizontal) / 2);
+    }
 }
 
 .svg-wrapper {
@@ -223,5 +227,16 @@ ul {
 
     &.active {
         display: block;
+    }
+}
+
+.desktop {
+    @media (max-width:1000px) {
+        display: none !important;
+    }
+}
+.mobile {
+    @media (min-width:1001px) {
+        display: none !important;
     }
 }

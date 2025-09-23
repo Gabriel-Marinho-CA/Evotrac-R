@@ -5,21 +5,21 @@
         Carrinho <span class="hidden buble-quantity">{{ cart.item_count }}</span>
       </p>
 
-      <close-minicart>
+      <close-drawer>
         <div class="svg-wrapper small">
           {{- 'icon-close.svg' | inline_asset_content -}}
         </div>
-      </close-minicart>
+      </close-drawer>
     </div>
     {% if cart != empty %}
-      <cart-items>
+      <div class="cart-items">
         <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
           {%- for item in cart.items -%}
             <div class="product-image">
               {{ item.product.featured_image | image_url: width: 70 | image_tag: alt: item.title }}
             </div>
             <div class="content">
-              <p>
+              <p> 
                 {{ item.title }}
               </p>
               <quantity-popover class="action">
@@ -49,15 +49,12 @@
                 <button class="plus" name="plus">+</button>
               </quantity-popover>
               <div class="remove-button">
-                <cart-remove-item data-remove-item-id="{{ item.key }}"> REMO </cart-remove-item>
+                <cart-remove-item data-remove-item-id="{{ item.key }}" class="svg-wrapper">    {{- 'ico-trash.svg' | inline_asset_content -}}  </cart-remove-item>
               </div>
-            </div>
-            <div>
-              <button>Exclude</button>
             </div>
           {% endfor %}
         </div>
-      </cart-items>
+      </div>
 
     {% else %}
       <div class="empty-cart">

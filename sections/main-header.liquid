@@ -14,6 +14,7 @@
 <div class="section-{{ section.id }}-padding header color-{{ section.settings.section_color_scheme }}">
   <div class="{% if section.settings.full_w %} page-width-full{% else %}page-width{% endif %}">
     <div class="wrapper-header">
+      {% render 'header-menu-mob' %}
       <div class="logo" style="max-width: {{ settings.logo_width }}px">
         {%- if request.page_type == 'index' -%}
           <h1 class="header__heading">
@@ -88,7 +89,7 @@
             {{- 'heart-ico.svg' | inline_asset_content -}}
           </a>
         </div>
-        <div class="minicart">
+        <open-drawer class="minicart">
           <div class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
             {% if cart == empty %}
               <span class="svg-wrapper big">{{ 'cart-ico.svg' | inline_asset_content }}</span>
@@ -105,15 +106,17 @@
               </div>
             {%- endif -%}
           </div>
-        </div>
+        </open-drawer>
       </div>
     </div>
   </div>
 </div>
-<div class="wrapper-menu-categories">
+<div class="wrapper-menu-categories desktop">
   {% render 'menu-departments'
     , menu: section.settings.menu.links %}
 </div>
+
+<script src="{{ 'header.js' | asset_url }}" defer></script>
 
 {% schema %}
   {

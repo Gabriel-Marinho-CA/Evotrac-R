@@ -5,7 +5,7 @@
 <nav class="category-menu">
   <div class="menu-first-level">
     {% for link in menu %}
-      <div class="">
+      <div class="wrapper-menu-first-level">
         <a
           class=""
           href="{{ link.url }}"
@@ -13,9 +13,9 @@
         >
           {{ link.title -}}
 
-          {% if link.links.size > 0 %}
-            {% render 'down-arrow' %}
-          {% endif %}
+          {% comment %} {% if link.links.size > 0 %} {% endcomment %}
+           {{ 'ico-arrow-d-b.svg' | inline_asset_content }}
+          {% comment %} {% endif %} {% endcomment %}
         </a>
         {% if link.links.size > 0 %}
           <ul class="menu-second-level">

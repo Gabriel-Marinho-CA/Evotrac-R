@@ -1,117 +1,121 @@
-class CartHooks {
-
+class CartService {
   constructor() {
     this.currentController = null;
   }
 
-  onCartUpdate() {
-    return fetch(`${routes.cart_url}?section_id=cart-drawer`)
-      .then((response) => response.text())
-      .then((responseText) => {
-        const html = new DOMParser().parseFromString(responseText, "text/html");
-        const selectors = ["cart-items", ".cart-drawer__footer", ".buble-quantity"];
-        const newQuantityBuble = html.querySelector('.buble-quantity').innerText;
-        for (const selector of selectors) {
-          const targetElement = document.querySelector(selector);
-          const sourceElement = html.querySelector(selector);
-          if (targetElement && sourceElement) {
-            targetElement.replaceWith(sourceElement);
-          }
-        }
-      })
-      .catch((e) => {
-        console.error(e);
+  async addToCart(product_id) {
+    const config = fetchConfig("javascript");
+
+    const productObj = {
+      items: [
+        {
+          id: product_id,
+          quantity: 1,
+        },
+      ],
+    };
+
+    config.body = JSON.stringify(productObj);
+
+    try {
+      const request = await fetch(`${routes.cart_add_url}`, {
+        ...config,
+        signal: this._setupRequest(),
       });
-  }
-  onUpdateQuantity(line_id, qtd) {
-    if (this.currentController) {
-      this.currentController.abort();
+
+      if (request.ok) {
+        this.cartUpdate();
+      }
+    } catch (error) {
+      console.error("Error in addToCart", error.message);
     }
+  }
 
-    this.currentController = new AbortController();
+  async cartUpdate() {
+    try {
+      const request = await fetch(`${routes.cart_url}?section_id=cart-drawer`);
 
+      if (request.ok) {
+        const responseText = await request.text();
+        publish(PUB_SUB_EVENTS.cartUpdateUi, { responseText: responseText });
+      }
+    } catch (error) {
+      console.error("Error in cartUpdate", error.message);
+    }
+  }
+  async updateQuantity(line_id, qtd) {
     const body = JSON.stringify({
       id: line_id,
-      quantity: qtd
+      quantity: qtd,
     });
 
-
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), signal: this.currentController.signal, ...{ body } })
-      .then((response) => {
-        return response.json()
-      })
-      .then((response) => {
-        return this.onCartUpdate();
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-  }
-  onRemoveItem(line_id) {
-    if (this.currentController) {
-      this.currentController.abort();
+    try {
+      const request = await fetch(`${routes.cart_change_url}`, {
+        ...fetchConfig(),
+        signal: this._setupRequest(),
+        ...{ body },
+      });
+      if (request.ok) {
+        this.cartUpdate();
+      }
+    } catch (error) {
+      console.error("Error in updateQuantity", error.message);
     }
+  }
+  async removeItem(line_id) {
+    const body = JSON.stringify({
+      id: line_id,
+      quantity: 0,
+    });
+
+    try {
+      const request = await fetch(`${routes.cart_change_url}`, {
+        ...fetchConfig(),
+        signal: this._setupRequest(),
+        ...{ body },
+      });
+      if (request.ok) {
+        this.cartUpdate();
+      }
+    } catch (error) {
+      console.error("Error in removeItem", error.message);
+    }
+  }
+
+  _setupRequest() {
+    if (this.currentController) this.currentController.abort();
     this.currentController = new AbortController();
-    const body = JSON.stringify(
-      {
-        id: line_id,
-        quantity: 0
-      }
-    )
-
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), signal: this.currentController.signal, ...{ body } })
-      .then(res => {
-        if (res.ok) {
-          this.onCartUpdate();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      })
+    return this.currentController.signal;
   }
 }
 
-class CartItems extends HTMLElement {
+class CartUI {
   constructor() {
-    super();
-    this.cartHooks = new CartHooks;
+    subscribe(PUB_SUB_EVENTS.cartUpdateUi, this.updateUI.bind(this));
   }
 
-  cartUpdateUnsubscriber = undefined;
-
-  connectedCallback() {
-    this.cartUpdateUnsubscriber = subscribe(
-      PUB_SUB_EVENTS.cartUpdate,
-      (event) => {
-        if (event.source == "cart-items") return;
-
-        return this.cartHooks.onCartUpdate();
-      }
+  updateUI(data) {
+    console.log(data);
+    const html = new DOMParser().parseFromString(
+      data.responseText,
+      "text/html"
     );
-  }
-  onUpdateQuantity(line_id, quantity) {
-    return this.cartHooks.onUpdateQuantity(line_id, quantity);
+    const selectors = [
+      ".cart-items",
+      ".cart-drawer__footer",
+      ".buble-quantity",
+    ];
+    for (const selector of selectors) {
+      const targetElement = document.querySelector(selector);
+      const sourceElement = html.querySelector(selector);
+      if (targetElement && sourceElement) {
+        targetElement.replaceWith(sourceElement);
+      }
+    }
   }
 }
 
-customElements.define("cart-items", CartItems);
+const cartService = new CartService();
+window.cartService = cartService;
 
-
-class CartRemoveButton extends HTMLElement {
-  constructor() {
-    super();
-
-    this.cartInstance = new CartHooks;
-    this.line_id = this.dataset.removeItemId;
-
-    this.addEventListener('click', () => this.cartInstance.onRemoveItem(this.line_id));
-  }
-
-}
-customElements.define("cart-remove-item", CartRemoveButton);
-
-let cartItems;
-window.addEventListener('load', () => {
-  cartItems = new CartItems();
-});
-
+const cartUI = new CartUI();
