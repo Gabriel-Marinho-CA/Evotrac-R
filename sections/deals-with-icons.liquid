@@ -15,22 +15,34 @@
 
 <div class="section-{{ section.id }}-padding deals-with-icons">
   <div class="page-width ">
-    <div class="wrapper  color-{{ section.settings.section_color_scheme }}">
-      {% for item in section.blocks %}
-        {% assign b = item.settings %}
-        <div class="card">
-          <div class="img">
-            {% if b.icon != blank %}
-                {% assign alt = b.content | strip_html%}
-              {{ b.icon | image_url: width: b.icon.width | image_tag: loading: 'lazy', alt: alt  }}
-            {% endif %}
+    <swiper-instance
+      class="swiper"
+      slide-desktop="6"
+      slide-mobile="1"
+      space-between-desk="0"
+      space-between-mob="5"
+      arrows-outside="true"
+      have-arrow="true">
+
+      <div class="wrapper swiper-wrapper color-{{ section.settings.section_color_scheme }}">
+        {% for item in section.blocks %}
+          {% assign b = item.settings %}
+          <div class="card swiper-slide">
+            <div class="img">
+              {% if b.icon != blank %}
+                {% assign alt = b.content | strip_html %}
+                {{ b.icon | image_url: width: b.icon.width | image_tag: loading: 'lazy', alt: alt }}
+              {% endif %}
+            </div>
+            <div class="content">
+              {{ b.content }}
+            </div>
           </div>
-          <div class="content">
-            {{ b.content }}
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
+    </swiper-instance>
+
+
   </div>
 </div>
 

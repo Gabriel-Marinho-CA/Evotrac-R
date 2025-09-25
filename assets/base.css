@@ -23,7 +23,12 @@
 body {
     margin: 0 !important;
     overflow-x: hidden;
+    transform: translate3d(0,0,0);
     background-color: #F4F4F4;
+
+    &:has(.drawer.active) {
+        overflow-y: hidden;
+    }
 }
 
 p,

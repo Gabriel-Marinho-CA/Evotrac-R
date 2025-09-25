@@ -4,6 +4,8 @@
     class="swiper"
     space-between-desk="0"
     space-between-mob="0"
+    have-arrow="true"
+    have-dots="true"
     loop=true
     autoplay=true>
     <div class="swiper-wrapper">
@@ -21,9 +23,9 @@
                   {% endif %}>
                   {% if forloop.first %}
                     {% assign alt_banner = slide.settings.image_slide.alt | default: slide.settings.alt %}
-                    
+
                     {% if slide.settings.image_slide_mob != blank %}
-                      {{ slide.settings.image_slide_mob | image_url: width: 412 | image_tag: loading: 'eager',  class: 'mobile', preload: true, alt: alt_banner, fetchpriority: 'high' }}
+                      {{ slide.settings.image_slide_mob | image_url: width: 412 | image_tag: loading: 'eager', class: 'mobile', preload: true, alt: alt_banner, fetchpriority: 'high' }}
                     {% endif %}
 
                     {% if slide.settings.image_slide != blank %}
@@ -56,7 +58,12 @@
           {% endcase %}
         {% endfor %}
       </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next">.</div>
+      <div class="swiper-button-prev">.</div>
+
     </swiper-instance>
+
   </div>
 
   {% schema %}

@@ -1,15 +1,27 @@
 .deals-with-icons {
-    .page-width {
+
+    swiper-instance {
         border-radius: 8px;
     }
 
     .wrapper {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        padding: 1rem 0;
+        /* display: grid;
+        grid-template-columns: repeat(5, 1fr); */
+
+
+        @media (min-width:1000px) {
+            justify-content: space-around;
+            padding: 1rem 0;
+        }
 
         .card {
             text-align: center;
+
+            @media (max-width:1000px) {
+                background-color: #fff;
+                border-radius: 8px;
+                padding: 1rem 0;
+            }
 
             .content {
                 font-size: 14px;

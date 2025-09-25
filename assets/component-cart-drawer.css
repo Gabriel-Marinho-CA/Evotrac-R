@@ -3,13 +3,19 @@
   z-index: 1000;
   right: 0;
   top: 0;
-  width: 40dvw;
-  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  height: 100dvh;
   transition: all .3s ease;
   background-color: #fff;
   transform: translateX(130%);
   padding: 1.3rem;
   border-radius: 15px;
+
+  @media (max-width:547px) {
+    width: 90vw;
+    max-width: 400px;
+  }
 
   &.active {
     transform: translateX(0);

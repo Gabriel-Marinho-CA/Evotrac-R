@@ -13,9 +13,9 @@
         >
           {{ link.title -}}
 
-          {% comment %} {% if link.links.size > 0 %} {% endcomment %}
+          {% if link.links.size > 0 %}
            {{ 'ico-arrow-d-b.svg' | inline_asset_content }}
-          {% comment %} {% endif %} {% endcomment %}
+          {% endif %}
         </a>
         {% if link.links.size > 0 %}
           <ul class="menu-second-level">
