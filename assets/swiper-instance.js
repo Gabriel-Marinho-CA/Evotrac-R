@@ -17,7 +17,6 @@ class SwiperInstance extends HTMLElement {
     this.center_mode = this.hasAttribute("center-mode");
 
 
-    console.log(this.slide_mobile);
   }
 
   connectedCallback() {

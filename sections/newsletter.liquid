@@ -29,11 +29,11 @@
               {% if item.settings.link != blank %}
                 <a hre="{{ item.settings.link.url }}" title="Icone rede social">
               {% endif %}
+              {% assign alt_ = item.settings.img.alt |  default:'Icone redesocial' %}
               {{
                 item.settings.img
                 | image_url: width: item.settings.img.width
-                | image_tag: loading: 'lazy', alt: item.settings.img.alt
-                | default: 'Icone redesocial'
+                | image_tag: loading: 'lazy', alt: alt_
               }}
               {% if item.settings.link != blank %}
                 </a>

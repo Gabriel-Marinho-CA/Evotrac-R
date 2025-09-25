@@ -61,7 +61,7 @@
       display: none;
     }
 
-    h4 {
+    p {
       font-size: clamp(20px, 3vw, 30px);
     }
 

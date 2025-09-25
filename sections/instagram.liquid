@@ -23,8 +23,7 @@
         {{
           section.settings.img
           | image_url: width: section.settings.img.width
-          | image_tag: loading: 'lazy', alt: section.settings.img.alt
-          | default: 'Icone instagram'
+          | image_tag: loading: 'lazy', alt: "Icone instagram"
         }}
       {% endif %}
       <h2>{{ section.settings.insta_text }}</h2>
@@ -37,7 +36,7 @@
     {% endfor %}
     <div class="btn-wrapper">
       {% if section.settings.link != blank %}
-        <a class="button button-primary" href="{{ section.settings.link.url }}"> {{ section.settings.btn_text }}</a>
+        <a class="button button-primary" href="{{ section.settings.link.url }}" title="{{ section.settings.btn_text  }}"> {{ section.settings.btn_text }}</a>
       {% endif %}
     </div>
   </div>

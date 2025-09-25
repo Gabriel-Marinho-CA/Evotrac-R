@@ -5,7 +5,7 @@
  
     <div class="img-wrapper">     
         {% if product.featured_image != blank %}
-            {{ product.featured_image | image_url: width: product.featured_image.width |  image_tag: loading:'lazy', alt: product.title  }}
+            {{ product.featured_image | image_url: width: 220 |  image_tag: loading:'lazy', alt: product.title  }}
         {% endif %}
     </div>
     {% if product.metafields.custom.nivel_resistencia != blank %}

@@ -2,18 +2,21 @@
     font-family: 'effra';
     src: url('https://cdn.shopify.com/s/files/1/0622/0565/7163/files/Effra_Trial_Rg.woff2?v=1757614125');
     font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'effra-b';
     src: url('https://cdn.shopify.com/s/files/1/0622/0565/7163/files/Effra_Trial_Bd.woff2?v=1757614125');
     font-weight: 700;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'effra-th';
     src: url('https://cdn.shopify.com/s/files/1/0622/0565/7163/files/Effra_Trial_Lt.woff2?v=1757614125');
     font-weight: 300;
+    font-display: swap;
 }
 
 
@@ -216,13 +219,13 @@ ul {
     font-family: 'effra-b';
     font-size: 28px;
     padding-bottom: 2rem;
-  
+
 
     * {
         font-size: inherit;
         font-family: inherit;
         font-weight: inherit;
-          color:#e6722c;
+        color: #e6722c;
     }
 }
 
@@ -252,5 +255,3 @@ ul {
         display: none !important;
     }
 }
-
-
