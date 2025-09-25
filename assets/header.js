@@ -17,7 +17,6 @@ class MenuMob extends HTMLElement {
   }
 
   handleMenuMob(action = "open") {
-    console.log("clicked");
     if (action == "close") {
       this.side_bar.classList.remove("active");
       this.overlay.classList.remove("active");

@@ -95,16 +95,19 @@ class CartUI {
   }
 
   updateUI(data) {
-    console.log(data);
     const html = new DOMParser().parseFromString(
       data.responseText,
       "text/html"
     );
-    const selectors = [
-      ".cart-items",
-      ".cart-drawer__footer",
-      ".buble-quantity",
-    ];
+
+    const quantity_cart = html.querySelector(
+      "#CartDrawer .buble-quantity"
+    ).innerText;
+
+    this.updateQuantityBubble(quantity_cart);
+
+    const selectors = ["#CartDrawer"];
+
     for (const selector of selectors) {
       const targetElement = document.querySelector(selector);
       const sourceElement = html.querySelector(selector);
@@ -112,6 +115,12 @@ class CartUI {
         targetElement.replaceWith(sourceElement);
       }
     }
+
+    // = html.querySelector("#CartDrawer .buble-quantity").innerText;
+  }
+
+  updateQuantityBubble(quantity_value) {
+    document.querySelector(".cart-count-span").innerText = quantity_value;
   }
 }
 
