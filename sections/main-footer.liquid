@@ -23,6 +23,9 @@
                   <h4>
                     {{ block.settings.heading }}
                   </h4>
+                  <div class="svg-wrapper small mobile">
+                    {{- 'arrow-d-w.svg' | inline_asset_content -}}
+                  </div>
                 </div>
                 <ul class="wrapper-links">
                   {%- for link in block.settings.menu_links.links -%}
@@ -107,6 +110,20 @@
     </div>
   {% endif %}
 </div>
+
+{% javascript %}
+ document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".link-list-footer").forEach((el) => {
+    el.addEventListener("click", function () {
+      if (el.classList.contains("active")) {
+        el.classList.remove("active");
+      } else {
+        el.classList.add("active");
+      }
+    });
+  });
+});
+{% endjavascript %}
 
 {% schema %}
 {

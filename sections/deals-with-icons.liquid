@@ -27,15 +27,17 @@
       <div class="wrapper swiper-wrapper color-{{ section.settings.section_color_scheme }}">
         {% for item in section.blocks %}
           {% assign b = item.settings %}
-          <div class="card swiper-slide">
-            <div class="img">
-              {% if b.icon != blank %}
-                {% assign alt = b.content | strip_html %}
-                {{ b.icon | image_url: width: b.icon.width | image_tag: loading: 'lazy', alt: alt }}
-              {% endif %}
-            </div>
-            <div class="content">
-              {{ b.content }}
+          <div class="swiper-slide">
+            <div class="card">
+              <div class="img">
+                {% if b.icon != blank %}
+                  {% assign alt = b.content | strip_html %}
+                  {{ b.icon | image_url: width: b.icon.width | image_tag: loading: 'lazy', alt: alt }}
+                {% endif %}
+              </div>
+              <div class="content">
+                {{ b.content }}
+              </div>
             </div>
           </div>
         {% endfor %}

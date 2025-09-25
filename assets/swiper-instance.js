@@ -2,8 +2,8 @@ class SwiperInstance extends HTMLElement {
   constructor() {
     super();
 
-    this.slide_desktop = parseInt(this.getAttribute("slide-desktop")) || 1;
-    this.slide_mobile = parseInt(this.getAttribute("slide-mobile")) || 1;
+    this.slide_desktop = parseFloat(this.getAttribute("slide-desktop")) || 1;
+    this.slide_mobile = parseFloat(this.getAttribute("slide-mobile")) || 1;
     this.have_arrows = this.hasAttribute("have-arrow");
     this.arrows_outside = this.hasAttribute("arrows-outside");
     this.have_dots = this.hasAttribute("have-dots");
@@ -14,6 +14,10 @@ class SwiperInstance extends HTMLElement {
     this.loop = this.hasAttribute("loop");
     this.autoplay = this.hasAttribute("autoplay");
     this.autoplay_speed = parseInt(this.getAttribute("autoplay-speed")) || 4500;
+    this.center_mode = this.hasAttribute("center-mode");
+
+
+    console.log(this.slide_mobile);
   }
 
   connectedCallback() {
@@ -27,10 +31,15 @@ class SwiperInstance extends HTMLElement {
       slidesPerView: this.slide_mobile,
       spaceBetween: this.space_between_mobile,
 
+      centeredSlides: this.center_mode,
+      centeredSlidesBounds: this.center_mode,
+
       breakpoints: {
         1024: {
           slidesPerView: this.slide_desktop,
           spaceBetween: this.space_between_desk,
+          centeredSlides: false,
+          centeredSlidesBounds: false,
         },
       },
 

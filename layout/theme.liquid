@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     {% if request.page_type == 'index' %}
-      <meta name="description" content="Nutriage Suplementos">
+      <meta name="description" content="Evotrac">
     {% endif %}
     {% if request.page_type == 'product' %}
       {% if product.metafields.custom.meta_descricao != blank %}
         <meta name="description" content="{{ product.metafields.custom.meta_descricao}}">
       {% else %}
-        <meta name="description" content="Nutriage Suplementos - {{ product.title }}">
+        <meta name="description" content="Evotrac - {{ product.title }}">
       {% endif %}
     {% endif %}
     <link rel="canonical" href="{{ canonical_url }}">
@@ -98,6 +98,10 @@
     {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
     {{ 'component-price.css' | asset_url | stylesheet_tag }}
     {{ 'card-component.css' | asset_url | stylesheet_tag }}
+
+    {% if request.page_type == 'index' %}
+    {{ 'home.css' | asset_url | stylesheet_tag }}
+    {% endif %}
 
     <link
       rel="stylesheet"

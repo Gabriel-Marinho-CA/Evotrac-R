@@ -1,8 +1,19 @@
+.arrows-outside {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+
+        @media (max-width:1023px) {
+            display: none !important;
+        }
+    }
+}
+
 .infocard-caroussel-section {
 
     .swiper-button-next,
     .swiper-button-prev {
-       transform: translateY(12%);
+        transform: translateY(12%);
     }
 
     .swiper-slide {
@@ -11,8 +22,9 @@
         .infocard-wrapper {
             height: 100%;
         }
+
         .infocard-wrapper:not(:has(a)),
-         .infocard-wrapper a{
+        .infocard-wrapper a {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -21,10 +33,11 @@
         }
 
         p {
-            font-size: clamp(14px,1.8vw,18px);
+            font-size: clamp(14px, 1.8vw, 18px);
             font-weight: 500;
             line-height: 1.5;
             text-align: center;
+            margin-bottom: auto;
         }
     }
 
@@ -33,9 +46,11 @@
             display: block;
             height: auto;
             width: 100%;
-
-            min-height: 128px;
             object-fit: cover;
         }
     }
+}
+
+.featured-collection {
+
 }
