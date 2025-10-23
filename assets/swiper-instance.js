@@ -16,7 +16,9 @@ class SwiperInstance extends HTMLElement {
     this.autoplay_speed = parseInt(this.getAttribute("autoplay-speed")) || 4500;
     this.center_mode = this.hasAttribute("center-mode");
 
-
+    // 👇 Novo atributo opcional para conexão com thumbnails
+    this.thumbs_id = this.getAttribute("thumbs-id") || null;
+    this.direction = this.getAttribute("direction") || "horizontal";
   }
 
   connectedCallback() {
@@ -24,9 +26,10 @@ class SwiperInstance extends HTMLElement {
   }
 
   initSwiper() {
-    new Swiper(this, {
+    // 👇 Guarda a referência da instância (necessário para thumbs)
+    this.swiper = new Swiper(this, {
       loop: this.loop,
-
+      direction: this.direction,
       slidesPerView: this.slide_mobile,
       spaceBetween: this.space_between_mobile,
 
@@ -71,6 +74,25 @@ class SwiperInstance extends HTMLElement {
           }
         : false,
     });
+
+    // 👇 Conecta thumbs se houver `thumbs-id`
+    if (this.thumbs_id) {
+      const thumbsEl = document.getElementById(this.thumbs_id);
+
+      // Espera o thumbs estar inicializado
+      const waitThumbs = () => {
+        if (thumbsEl?.swiper) {
+          this.swiper.thumbs.swiper = thumbsEl.swiper;
+          this.swiper.thumbs.init();
+          this.swiper.thumbs.update();
+        } else {
+          requestAnimationFrame(waitThumbs);
+        }
+      };
+
+      waitThumbs();
+    }
   }
 }
+
 customElements.define("swiper-instance", SwiperInstance);
