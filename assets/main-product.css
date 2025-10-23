@@ -5,6 +5,15 @@
         gap: 2rem;
         justify-content: space-between;
 
+
+        >div {
+            flex: 1;
+
+            &.right-side-product {
+                max-width: 654px;
+            }
+        }
+
         .left-side-product {
             min-width: 1px;
 
@@ -121,5 +130,15 @@
                 }
             }
         }
+    }
+}
+
+@keyframes go-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-20px);
     }
 }

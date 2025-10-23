@@ -1,6 +1,10 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
+{{ 'main-product-info.css' | asset_url | stylesheet_tag }}
 
 {% assign nivel_resistencia = product.metafields.custom.nivel_de_resistencia %}
+{% assign cupons = product.metafields.custom.cupons_de_desconto.value %}
+{% assign modelo = product.metafields.custom.modelo %}
+{% assign marca = product.metafields.custom.marca %}
 
 
 {%- style -%}
@@ -56,6 +60,51 @@
           {% endif %}
         </div>
       </div>
+      <div class="right-side-product">
+        {% render 'cupons-area' cupons: cupons %}
+
+        <div class="title-product">
+          <h1>{{ product.title }}</h1>
+        </div>
+        <div class="brand-code-model-product">
+          <div class="code">
+            <p>Código:
+              <span>{{ product.first_available_variant.id }}</span>
+            </p>
+          </div>
+          {% if modelo != blank %}
+            <div class="model">
+              <p>Módelo:
+                <span>
+                  {{ modelo }}
+                </span>
+              </p>
+            </div>
+          {% endif %}
+          {% if marca != blank %}
+            <div class="brand">
+              <p>Marca:
+                <span>
+                  {{ marca }}
+                </span>
+              </p>
+            </div>
+
+          {% endif %}
+        </div>
+        <div class="app-full-desk">
+          {% for block in section.blocks %}
+              {% if block.type =="@app" %}
+                {% render block %}
+              {% endif %}
+          {% endfor %}
+          <a href="#">Ver descrição completa</a>
+        </div>
+
+        <div class="price-area">
+          {% render 'price-product' product:product %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -91,6 +140,11 @@
         "unit": "px",
         "label": "t:sections.all.padding.padding_bottom",
         "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
       }
     ]
   }

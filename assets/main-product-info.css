@@ -1,0 +1,115 @@
+ #product {
+     .right-side-product {
+
+         .cupom-area,
+         .cupons {
+             display: flex;
+             gap: 2rem;
+
+             >p {
+                 font-size: 14px;
+                 color: #2D2A26;
+                 font-family: 'effra-b';
+             }
+         }
+
+         .cupons {
+             flex: 1;
+             justify-content: space-between;
+             gap: 1rem;
+
+             .cupom {
+                 display: flex;
+                 flex-direction: column;
+                 gap: .35rem;
+                 text-align: center;
+                 flex: 1;
+
+
+                 .copy-cupom {
+                     color: #EB7631;
+                     font-weight: 700;
+                     font-size: 12px;
+                     border: 2px dashed #EB7631;
+                     padding: .4rem 1rem;
+                     cursor: pointer;
+                     border-radius: 4px;
+                     position: relative;
+
+                     &.copiado {
+                         &::before {
+                             content: "Copiado!";
+                             background-color: #EB7631;
+                             color: #fff;
+                             width: fit-content;
+                             display: flex;
+                             justify-content: center;
+                             align-items: center;
+                             border-radius: 6px;
+                             animation: go-up 1s ease forwards;
+                             position: absolute;
+                             bottom: 1rem;
+                             padding: .15rem .35rem;
+
+                         }
+                     }
+                 }
+
+                 .legenda {
+                     font-size: 10px;
+                     color: #93908F;
+                     line-height: 1.5;
+                 }
+             }
+         }
+
+         .title-product {
+             margin-top: 2rem;
+             font-size: clamp(14px, 2vw, 16px);
+             font-weight: 500;
+             line-height: 1.5;
+             font-family: 'effra-b';
+             color: #2D2A26;
+         }
+
+         .brand-code-model-product {
+             display: flex;
+             align-items: center;
+             gap: 2.3rem;
+             margin-top: 1rem;
+
+             p {
+                 font-family: 'effra-b';
+                 font-size: 14px;
+                 color: #2D2A26;
+
+                 span {
+                     font-family: 'effra';
+                     font-size: 14px;
+                     color: #93908F;
+                 }
+             }
+
+             .brand {
+                 span {
+                     text-decoration: underline;
+                 }
+             }
+         }
+
+         .app-full-desk {
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             padding-top: 1rem;
+             border-bottom: 1px solid #C9C6C5;
+             padding-bottom: 1rem;
+
+             a {
+                 color: #EB7631;
+                 font-size: 12px;
+             }
+
+         }
+     }
+ }

@@ -11,6 +11,9 @@
     assign pix_discount_value_formatted = pix_discount_value| divided_by: 100.00 
     assign price_pix_discounted = price |  times: pix_discount_value_formatted | minus: price | abs
 
+        assign economy =  price | minus: price_pix_discounted
+    
+
 %}
 
 <div class="price-shelf">
@@ -38,6 +41,9 @@
                 {{ price_pix_discounted | money }}
             </p>
             <p>à vista com {{pix_discount_value}}% de desconto no PIX</p>
+    </div>
+    <div class="economy">
+        <p>Economia de {{ economy | money }}</p>
     </div>
     <div class="installments">
         <p>Ou <span>{{ price | money }}</span> em {{ installment_number }}x de {{ installment_price| money }} sem juros </p>

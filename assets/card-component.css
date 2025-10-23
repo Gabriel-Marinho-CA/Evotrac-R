@@ -46,6 +46,18 @@
         text-align: center;
         padding: 2rem 0 .55rem 0;
 
+        .list-price {
+            padding-bottom: .25rem;
+            P {
+                color: #AEAAAA;
+                font-size: 14px;
+
+                span {
+                    text-decoration: line-through;
+                }
+            }
+        }
+
         .spot-price {
             font-size: 16px;
 
