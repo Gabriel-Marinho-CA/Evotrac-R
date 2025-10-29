@@ -1,0 +1,16 @@
+<div class="shipping-calc">
+  <p>
+    <span class="svg-wrapper">
+      {{- 'truck-icon.svg' | inline_asset_content -}}
+    </span>
+    Calcule o frete e o prazo de entrega
+  </p>
+
+  <shipping-calculator class="wrapper shipping__form">
+    <div class="wrapper">
+        <input class="js-zip" type="text">
+        <button class="button button-secondary js-button">CALCULAR</button>
+    </div>
+    <div class="shipping__response"></div>
+  </shipping-calculator>
+</div>

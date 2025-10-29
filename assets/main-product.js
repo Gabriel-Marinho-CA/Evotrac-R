@@ -7,6 +7,7 @@ class ProductVariantes extends HTMLFieldSetElement {
 
   onChange(event) {
     const input = event.target;
+    console.log(input.vaue)
 
     if (input.tagName !== "INPUT") return;
 
@@ -33,6 +34,11 @@ class ProductVariantes extends HTMLFieldSetElement {
 
       const productPriceDOM = document.querySelector("#product .price-area");
       const productPrice = html.querySelector("#product .price-area");
+
+      const buyButtonDOM  = document.querySelector('.buy-area button');
+      const buyButton  = html.querySelector('.buy-area button');
+
+      buyButtonDOM.dataset.productId = buyButton.dataset.productId; 
 
       productPriceDOM.innerHTML = productPrice.innerHTML;
     } catch (error) {

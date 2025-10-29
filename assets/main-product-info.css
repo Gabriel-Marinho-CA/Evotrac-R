@@ -231,7 +231,116 @@
                  }
              }
          }
+
+         .compra-segura {
+             margin-top: 1.5rem;
+             display: flex;
+             justify-content: flex-end;
+             gap: .44rem;
+             align-items: center;
+
+             p {
+                 color: #388E3B;
+                 font-size: 14px;
+             }
+         }
+
+         .buy-area {
+             margin-top: 0.75rem;
+             display: flex;
+             align-items: center;
+             gap: 1rem;
+             flex-wrap: wrap;
+
+             .revendedor {
+                 --color-button: #eb7631;
+                 --color-button-text: #eb7631;
+
+                 a {
+                     border-radius: 12px;
+                     height: 55px;
+                 }
+             }
+
+             &.last-units {
+                 .buy-button {
+                     position: relative;
+                     text-align: center;
+
+                     &::after {
+                         content: "Últimas unidades em estoque!";
+                         color: #417505;
+                         font-size: 14px;
+                         padding-top: .35rem;
+                         position: absolute;
+                         left: 0;
+                         width: 100%;
+                         bottom: -22px;
+                     }
+                 }
+             }
+         }
+
+         .buy-button {
+             flex: 1;
+
+             --color-button: #388E3B;
+
+             button {
+                 width: 100%;
+                 height: 55px;
+                 border-radius: 12px;
+                 font-family: 'effra-md';
+                 font-size: 16px;
+             }
+         }
+
+         .shipping-calc {
+             margin-top: 2rem;
+
+             >p {
+                 display: flex;
+                 align-items: center;
+                 gap: .55rem;
+                 font-size: 16px;
+                 color: #2D2A26;
+
+             }
+
+             .wrapper {
+                 display: flex;
+                 gap: 1rem;
+                 margin-top: .80rems;
+             }
+
+             input {
+                 height: 52px;
+                 border: 1px solid #C9C6C5;
+                 border-radius: 12px;
+                 padding-inline: 1.4rem;
+                 font-size: 16px;
+                 flex: 1;
+             }
+
+             button {
+                 --color-button: #000;
+                 --color-button-text: #000;
+                 height: 52px;
+                 border-radius: 12px;
+             }
+
+             .shipping__response {
+                 &.loading {
+                     &::after {
+                         content: "Carregando...";
+
+                     }
+                 }
+             }
+         }
+
      }
+
 
      .paymethods_product {
          padding: 2rem 1rem;
@@ -307,13 +416,14 @@
 
                          label {
                              font-family: 'effra-b';
-                            &:before {
-                                content: "";
-                                background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1IDcuNUMxNSAxMS42NDIxIDExLjY0MjEgMTUgNy41IDE1QzMuMzU3ODUgMTUgMCAxMS42NDIxIDAgNy41QzAgMy4zNTc4NSAzLjM1Nzg1IDAgNy41IDBDMTEuNjQyMSAwIDE1IDMuMzU3ODUgMTUgNy41Wk02LjYzMjQ4IDExLjQ3MTJMMTIuMTk3IDUuOTA2NjdDMTIuMzg1OSA1LjcxNzcyIDEyLjM4NTkgNS40MTEzNCAxMi4xOTcgNS4yMjIzOUwxMS41MTI3IDQuNTM4MUMxMS4zMjM4IDQuMzQ5MTIgMTEuMDE3NCA0LjM0OTEyIDEwLjgyODQgNC41MzgxTDYuMjkwMzIgOS4wNzYxNUw0LjE3MTYgNi45NTc0M0MzLjk4MjY1IDYuNzY4NDggMy42NzYyNyA2Ljc2ODQ4IDMuNDg3MjkgNi45NTc0M0wyLjgwMyA3LjY0MTcxQzIuNjE0MDUgNy44MzA2NyAyLjYxNDA1IDguMTM3MDUgMi44MDMgOC4zMjZMNS45NDgxNyAxMS40NzEyQzYuMTM3MTUgMTEuNjYwMSA2LjQ0MzUgMTEuNjYwMSA2LjYzMjQ4IDExLjQ3MTJaIiBmaWxsPSIjRUI3NjMxIi8+Cjwvc3ZnPgo=);
-                                width: 15px;
-                                height: 15px;
-                                margin-right: 4px;
-                            }
+
+                             &:before {
+                                 content: "";
+                                 background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNSAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1IDcuNUMxNSAxMS42NDIxIDExLjY0MjEgMTUgNy41IDE1QzMuMzU3ODUgMTUgMCAxMS42NDIxIDAgNy41QzAgMy4zNTc4NSAzLjM1Nzg1IDAgNy41IDBDMTEuNjQyMSAwIDE1IDMuMzU3ODUgMTUgNy41Wk02LjYzMjQ4IDExLjQ3MTJMMTIuMTk3IDUuOTA2NjdDMTIuMzg1OSA1LjcxNzcyIDEyLjM4NTkgNS40MTEzNCAxMi4xOTcgNS4yMjIzOUwxMS41MTI3IDQuNTM4MUMxMS4zMjM4IDQuMzQ5MTIgMTEuMDE3NCA0LjM0OTEyIDEwLjgyODQgNC41MzgxTDYuMjkwMzIgOS4wNzYxNUw0LjE3MTYgNi45NTc0M0MzLjk4MjY1IDYuNzY4NDggMy42NzYyNyA2Ljc2ODQ4IDMuNDg3MjkgNi45NTc0M0wyLjgwMyA3LjY0MTcxQzIuNjE0MDUgNy44MzA2NyAyLjYxNDA1IDguMTM3MDUgMi44MDMgOC4zMjZMNS45NDgxNyAxMS40NzEyQzYuMTM3MTUgMTEuNjYwMSA2LjQ0MzUgMTEuNjYwMSA2LjYzMjQ4IDExLjQ3MTJaIiBmaWxsPSIjRUI3NjMxIi8+Cjwvc3ZnPgo=);
+                                 width: 15px;
+                                 height: 15px;
+                                 margin-right: 4px;
+                             }
                          }
                      }
                  }
@@ -324,7 +434,7 @@
                      cursor: pointer;
                      width: 100%;
                      height: 100%;
-                            display: flex;
+                     display: flex;
                      align-items: center;
                      justify-content: center;
                  }
