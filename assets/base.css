@@ -218,6 +218,10 @@ ul {
         font-size: 20px !important;
 
     }
+
+    @media (max-width:547px) {
+        display: none;
+    }
 }
 
 .title {
