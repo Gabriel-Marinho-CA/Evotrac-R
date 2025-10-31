@@ -32,7 +32,6 @@
 body {
     margin: 0 !important;
     overflow-x: hidden;
-    transform: translate3d(0, 0, 0);
     background-color: #F4F4F4;
 
     &:has(.drawer.active) {
@@ -229,13 +228,13 @@ ul {
     font-family: 'effra-b';
     font-size: 28px;
     padding-bottom: 2rem;
-
+ 
 
     * {
         font-size: inherit;
         font-family: inherit;
         font-weight: inherit;
-        color: #e6722c;
+        color: #2D2A26;
     }
 }
 

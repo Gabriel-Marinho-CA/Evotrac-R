@@ -3,9 +3,25 @@
 
 <div class="shelf-component">
   <a href="{{ product.url }}" title="{{ product.title }}">
+    {% if product.compare_at_price %}
+      <div class="seal">
+       -{{
+          product.compare_at_price
+          | minus: product.price
+          | times: 100.0
+          | divided_by: product.compare_at_price
+          | round
+        }}%
+      </div>
+    {% endif %}
+
     <div class="img-wrapper">
       {% if product.featured_image != blank %}
         {{ product.featured_image | image_url: width: 220 | image_tag: loading: 'lazy', alt: product.title }}
+
+        {% if product.images.size > 1 %}
+           {{ product.images[1] | image_url: width: 220 | image_tag: loading: 'lazy', alt: product.title, fetchpriority: 'low', class: 'second-image' }}
+        {% endif %}
       {% endif %}
     </div>
     {% if nivel_resistencia != blank %}
@@ -16,7 +32,10 @@
             {{- 'nivel-resistencia.svg' | inline_asset_content -}}
           </div>
 
-          <div class="triangle" style="--triangle-position: calc((20.16px* {{ nivel_resistencia | minus: 1 }}) + 2.76px);">
+          <div
+            class="triangle"
+            style="--triangle-position: calc((20.16px* {{ nivel_resistencia | minus: 1 }}) + 2.76px);"
+          >
             <div class="svg-wrapper small">
               {{- 'triangle.svg' | inline_asset_content -}}
             </div>
@@ -24,7 +43,7 @@
         </div>
       </div>
     {% else %}
-        <div class="space"></div>
+      <div class="space"></div>
     {% endif %}
     <div class="title-product">
       <p>{{ product.title }}</p>

@@ -8,22 +8,59 @@
     border-radius: 8px;
 
     &:hover {
+        .img-wrapper {
+            img:first-child {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            .second-image {
+                opacity: 1;
+                transform: translateX(-50%);
+            }
+        }
         .quick-add {
             opacity: 1;
         }
     }
 
+    .seal {
+        background-color: #388E3B;
+        border-radius: 4px;
+        color: #fff;
+        font-size: clamp(10px, 1.5vw, 13px);
+        padding: .175rem .35rem;
+        width: fit-content;
+        position: absolute;
+        right: 1rem;
+        font-family: 'effra-md';
+    }
+
     .img-wrapper {
+        position: relative;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         width: 100%;
+        overflow: hidden;
 
         img {
             width: 100%;
             height: auto;
             object-fit: cover;
             max-width: 220px;
+            display: block;
+            transition: all 0.5s ease;
+        }
+
+        img:first-child {
+            opacity: 1;
+            transform: translateX(50%);
+        }
+
+        .second-image {
+            opacity: 0;
+            transform: translateX(100%);
         }
     }
 
@@ -40,9 +77,15 @@
         height: 62px;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+
+        @media (max-width:547px) {
+            min-height: 57px;
+            max-height: 57px;
+            height: 57px;
+        }
     }
 
-    .space{
+    .space {
         height: calc(49px + .65rem);
     }
 
@@ -89,6 +132,10 @@
     .price-shelf {
         text-align: center;
         padding: 2rem 0 .55rem 0;
+
+        @media (max-width:547px) {
+            padding-top: 1rem;
+        }
 
         .list-price {
             padding-bottom: .25rem;
@@ -144,7 +191,11 @@
 
     .quick-add {
         margin-top: auto;
-        opacity: 0;
+        transition: all .35s ease;
+
+        @media (min-width:1000px) {
+            opacity: 0;
+        }
 
         .buy-button {
             button {
@@ -153,6 +204,10 @@
                 border-radius: 12px;
                 font-size: clamp(16px, 2vw, 18px);
                 gap: 1rem;
+
+                @media (max-width:547px) {
+                    gap: .45rem;
+                }
             }
         }
     }
