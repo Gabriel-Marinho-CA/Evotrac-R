@@ -38,7 +38,7 @@
           <div class="swiper-wrapper">
             {% for recommendation in recommendations.products %}
               <div class="swiper-slide">
-                {% render 'card-component', product: product, section_id: section.id %}
+                {% render 'card-component', product: recommendation, section_id: section.id %}
               </div>
             {% endfor %}
           </div>

@@ -42,12 +42,57 @@
         -webkit-box-orient: vertical;
     }
 
+    .space{
+        height: calc(49px + .65rem);
+    }
+
+    .nivel-resistencia {
+        display: flex;
+        align-items: center;
+        gap: .45rem;
+        height: 49px;
+        justify-content: center;
+        position: relative;
+        margin-bottom: .65rem;
+        z-index: 0;
+
+        &::before {
+            content: "";
+            background: #F4F0EF;
+            width: calc(100% + 2rem);
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+        }
+
+
+        >p {
+            font-size: 14px;
+        }
+
+        .wrapper {
+            position: relative;
+
+            .wrapper-svg {
+                display: flex;
+            }
+
+            .triangle {
+                bottom: -9.5px;
+                position: absolute;
+            }
+        }
+
+
+    }
+
     .price-shelf {
         text-align: center;
         padding: 2rem 0 .55rem 0;
 
         .list-price {
             padding-bottom: .25rem;
+
             P {
                 color: #AEAAAA;
                 font-size: 14px;

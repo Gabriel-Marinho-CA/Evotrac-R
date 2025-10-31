@@ -265,3 +265,7 @@ ul {
         display: none !important;
     }
 }
+
+.triangle {
+    left: var(--triangle-position);
+}
