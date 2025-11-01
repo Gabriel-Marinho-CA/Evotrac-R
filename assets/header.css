@@ -29,6 +29,7 @@ header {
                 height: auto;
                 display: block;
                 width: 100%;
+                aspect-ratio: 260/48;
             }
         }
 
