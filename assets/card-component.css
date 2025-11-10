@@ -6,19 +6,21 @@
     border: 1px solid #E8E1DB;
     padding: 1rem;
     border-radius: 8px;
+    overflow: hidden;
 
     &:hover {
         .img-wrapper {
             img:first-child {
-                opacity: 0;
-                transform: translateX(-100%);
+                display: none;
             }
 
             .second-image {
+                display: block;
+                animation: transition-display-none 0.5s ease both;
                 opacity: 1;
-                transform: translateX(-50%);
             }
         }
+
         .quick-add {
             opacity: 1;
         }
@@ -37,12 +39,6 @@
     }
 
     .img-wrapper {
-        position: relative;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        overflow: hidden;
 
         img {
             width: 100%;
@@ -53,14 +49,9 @@
             transition: all 0.5s ease;
         }
 
-        img:first-child {
-            opacity: 1;
-            transform: translateX(50%);
-        }
-
         .second-image {
+            display: none;
             opacity: 0;
-            transform: translateX(100%);
         }
     }
 
@@ -211,5 +202,10 @@
             }
         }
     }
+}
 
+@keyframes transition-display-none {
+    0% {
+        opacity: 0;
+    }
 }

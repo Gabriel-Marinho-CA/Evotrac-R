@@ -153,7 +153,7 @@
                   {{ option.name }}
                 {% endif %}
               </legend>
-              <variant-options class="variants-fieldset">
+              <fieldset is="variant-options" class="variants-fieldset">
                 <div class="options-wrapper">
                   {% for value in option.values %}
                     <div class="wrapper-op">
@@ -176,7 +176,7 @@
                     </div>
                   {% endfor %}
                 </div>
-              </variant-options>
+              </fieldset>
             {% endfor %}
           </div>
         {% endif %}

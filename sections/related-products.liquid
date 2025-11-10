@@ -9,6 +9,15 @@
       padding-bottom: {{ section.settings.padding_top | times: 0.55 | round }}px;
     }
   }
+  .related-products {
+    @media (max-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none
+    }
+    }
+
+  }
 {% endstyle %}
 
 <div class="section-{{ section.id }}-padding featured-collection arrows-outside  color-{{ section.settings.section_color_scheme }}">

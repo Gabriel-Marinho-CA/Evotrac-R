@@ -7,15 +7,15 @@ class ZoomImage extends HTMLElement {
   }
 
   connectedCallback() {
-    const imgSrc = this.getAttribute("src");
-    const alt = this.getAttribute("alt") || "";
+      const imgSrc = this.getAttribute("src");
+      const alt = this.getAttribute("alt") || "";
 
-    this.style.display = "block";
-    this.style.overflow = "hidden";
-    this.style.cursor = "zoom-in";
-    this.style.position = "relative";
+      this.style.display = "block";
+      this.style.overflow = "hidden";
+      this.style.cursor = "zoom-in";
+      this.style.position = "relative";
 
-    this.innerHTML = `
+      this.innerHTML = `
       <img src="${imgSrc}" alt="${alt}" style="
         width: 100%;
         height: auto;
@@ -26,14 +26,14 @@ class ZoomImage extends HTMLElement {
       ">
     `;
 
-    this.img = this.querySelector("img");
+      this.img = this.querySelector("img");
 
-    if (this.disableMobile && window.matchMedia("(max-width: 768px)").matches)
-      return;
+      if (this.disableMobile && window.matchMedia("(max-width: 768px)").matches)
+        return;
 
-    this.addEventListener("mouseenter", this.onEnter.bind(this));
-    this.addEventListener("mousemove", this.onMove.bind(this));
-    this.addEventListener("mouseleave", this.onLeave.bind(this));
+      this.addEventListener("mouseenter", this.onEnter.bind(this));
+      this.addEventListener("mousemove", this.onMove.bind(this));
+      this.addEventListener("mouseleave", this.onLeave.bind(this));
   }
 
   onEnter() {

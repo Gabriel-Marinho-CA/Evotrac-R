@@ -7,13 +7,13 @@ class ProductVariantes extends HTMLFieldSetElement {
 
   onChange(event) {
     const input = event.target;
-    console.log(input.vaue)
+    console.log(input.vaue);
 
     if (input.tagName !== "INPUT") return;
 
     const requestUrl = input.value;
     this.changeVariant(requestUrl);
-    
+
     this.querySelectorAll(".wrapper-op").forEach((el) =>
       el.classList.remove("active")
     );
@@ -35,10 +35,10 @@ class ProductVariantes extends HTMLFieldSetElement {
       const productPriceDOM = document.querySelector("#product .price-area");
       const productPrice = html.querySelector("#product .price-area");
 
-      const buyButtonDOM  = document.querySelector('.buy-area button');
-      const buyButton  = html.querySelector('.buy-area button');
+      const buyButtonDOM = document.querySelector(".buy-area button");
+      const buyButton = html.querySelector(".buy-area button");
 
-      buyButtonDOM.dataset.productId = buyButton.dataset.productId; 
+      buyButtonDOM.dataset.productId = buyButton.dataset.productId;
 
       productPriceDOM.innerHTML = productPrice.innerHTML;
     } catch (error) {
@@ -64,3 +64,13 @@ class ProductVariantes extends HTMLFieldSetElement {
 customElements.define("variant-options", ProductVariantes, {
   extends: "fieldset",
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  if(window.innerWidth < 1000) return;
+  const productMedia = document.querySelector(".product-media");
+  if (productMedia) {
+    const height = productMedia.offsetHeight + 111;
+    productMedia.style.height = `${height}px`;
+  }
+}); 

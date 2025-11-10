@@ -16,7 +16,7 @@ class SwiperInstance extends HTMLElement {
     this.autoplay_speed = parseInt(this.getAttribute("autoplay-speed")) || 4500;
     this.center_mode = this.hasAttribute("center-mode");
 
-    // 👇 Novo atributo opcional para conexão com thumbnails
+    // 👇 thumbs e direção padrão
     this.thumbs_id = this.getAttribute("thumbs-id") || null;
     this.direction = this.getAttribute("direction") || "horizontal";
   }
@@ -26,22 +26,28 @@ class SwiperInstance extends HTMLElement {
   }
 
   initSwiper() {
-    // 👇 Guarda a referência da instância (necessário para thumbs)
     this.swiper = new Swiper(this, {
       loop: this.loop,
-      direction: this.direction,
+      direction: this.direction, // direção inicial (será sobrescrita nos breakpoints)
       slidesPerView: this.slide_mobile,
       spaceBetween: this.space_between_mobile,
 
       centeredSlides: this.center_mode,
       centeredSlidesBounds: this.center_mode,
 
+      // 👇 breakpoints controlam slides e direção
       breakpoints: {
         1024: {
           slidesPerView: this.slide_desktop,
           spaceBetween: this.space_between_desk,
+          direction: this.direction, // mantém a direção original (ex: vertical)
           centeredSlides: false,
           centeredSlidesBounds: false,
+        },
+        // 👇 para telas menores que 1024px
+        0: {
+          spaceBetween: this.space_between_mobile,
+          direction: "horizontal", // muda para horizontal no mobile
         },
       },
 
@@ -75,11 +81,10 @@ class SwiperInstance extends HTMLElement {
         : false,
     });
 
-    // 👇 Conecta thumbs se houver `thumbs-id`
+    // 👇 conecta thumbs se houver
     if (this.thumbs_id) {
       const thumbsEl = document.getElementById(this.thumbs_id);
 
-      // Espera o thumbs estar inicializado
       const waitThumbs = () => {
         if (thumbsEl?.swiper) {
           this.swiper.thumbs.swiper = thumbsEl.swiper;
